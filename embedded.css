@@ -1,0 +1,6 @@
+.embedded .product-switch{display:none}
+.embedded .robot-controls{bottom:8px;gap:5px;padding:4px 6px;background:#ffffffc9;backdrop-filter:none}
+.embedded .robot-controls button{width:32px;height:32px}
+.embedded .robot-controls svg{width:17px;height:17px}
+.embedded canvas:focus{outline:none}
+.embedded canvas:focus-visible{outline:2px solid #f95800;outline-offset:-3px}

@@ -1,0 +1,39 @@
+:root{--accent:#f95800;--bg:#fafafa;--edge:#939393;--fine:#bebebe;--top:#fcfcfc;--front:#f5f5f5;--side:#e7e7e7;--recess:#cecece;--ink:#818181}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);overflow:hidden}
+main{height:100dvh;width:100%;display:grid;place-items:center;background:radial-gradient(ellipse at 48% 56%,#fff 0%,var(--bg) 75%)}
+svg{width:min(100vw,calc(100dvh * 1.33333));height:auto;max-height:100dvh;display:block;overflow:visible}
+svg *{vector-effect:non-scaling-stroke}
+.device{cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
+.device .outline{transition:stroke 180ms ease,stroke-width 180ms ease}
+.device:hover .outline{stroke:#ba947d}
+.device:focus-visible .outline{stroke:var(--accent);stroke-width:2.5}
+.device.source .outline{stroke:#c99b7f}
+.key,.tray,.disk,#touchpad{cursor:pointer;outline:none}
+.key text{user-select:none}
+.key .key-face{transition:fill 100ms ease,stroke 100ms ease}
+.key:hover .key-face,.key:focus-visible .key-face{stroke:var(--accent);stroke-width:2}
+.key.pressed .key-face,.key.latched .key-face{fill:var(--accent);stroke:var(--accent)}
+.key.pressed text{fill:white}
+.tray.selected .tray-face,.tray:focus-visible .tray-face{stroke:var(--accent);stroke-width:2}
+.disk{transition:transform 220ms ease}
+.disk.ejected{transform:translateY(-24px)}
+.disk:focus-visible .outline,#touchpad:focus-visible rect{stroke:var(--accent);stroke-width:2.5}
+.device [data-action]:focus-visible .outline{stroke:var(--accent);stroke-width:2.5}
+.busy .tray:not(.selected) .led{animation:none;opacity:.4}
+.cable path:nth-child(4){stroke:var(--cable-highlight,#ffbd76)}
+.inspecting #nas,.inspecting #switch,.inspecting #dock{opacity:0;pointer-events:none}
+.inspecting .cable,.inspecting #floor,.inspecting #clips{visibility:hidden}
+.led{fill:var(--accent);stroke:none;opacity:.7;transition:opacity 180ms ease}
+.device.busy .led{animation:blink 650ms ease-in-out infinite alternate}
+.device.complete .led{opacity:1}
+.signal{fill:none;stroke:#fff4dc;stroke-width:3;stroke-linecap:round;stroke-dasharray:10 58;opacity:0;pointer-events:none}
+.flowing .signal{opacity:1;animation:flow 900ms linear infinite}
+.flowing.reverse .signal{animation-direction:reverse}
+.screen-chart{transition:opacity 200ms ease}
+.busy .screen-chart{animation:screen 1.4s ease-in-out infinite alternate}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@keyframes flow{to{stroke-dashoffset:-136}}
+@keyframes blink{from{opacity:1}to{opacity:.25}}
+@keyframes screen{to{opacity:.45}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.flowing .signal{opacity:.85}.device.busy .led{opacity:1}}

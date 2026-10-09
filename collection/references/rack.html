@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090a0b">
+  <meta name="description" content="可交互的等轴测服务器机架：七台设备、青色状态灯、线缆流光和实时负载。">
+  <title>R-04 · 等轴测服务器机架</title>
+  <link rel="stylesheet" href="iso-figures-original-source/fonts.css">
+  <link rel="stylesheet" href="iso-figures-original-source/styles.css">
+  <style>
+    :root[data-theme="dark"] {
+      --bg:#090a0b; --panel:#090a0b; --edge:#333a3e;
+      --line:#899297; --detail:#566066; --body:#141719; --deck:#191c1e;
+    }
+    body { padding:0; min-height:100dvh; }
+    .wrap { max-width:1180px; gap:0; padding:16px 20px 12px; }
+    .top { min-height:44px; padding:0 6px; }
+    .top .hi { font-size:11px; }
+    .top .dot { background:#22d3ee; box-shadow:0 0 10px #22d3ee; }
+    .swatches { border-color:#303639; }
+    .arrows { display:none; }
+    .layout { display:block; }
+    #nav { display:none; }
+    figure { border:0; border-radius:0; background:transparent; padding:0; gap:0; }
+    .cap { padding:3px 8px; color:#7c8488; font-size:10px; }
+    #stageHolder { height:min(82dvh,980px); min-height:620px; aspect-ratio:auto; }
+    #stageHolder.glow { background:radial-gradient(ellipse 40% 39% at 52% 54%,rgba(34,211,238,.045),transparent 76%); }
+    #stage { height:100%; }
+    .bottom { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:2px 8px 0; color:#858d91; font-size:11px; }
+    .bottom button { border:1px solid #343b3f; color:#b9c4c7; background:#1b1e20; padding:8px 13px; border-radius:8px; font:inherit; cursor:pointer; }
+    .bottom button:hover { border-color:#22d3ee; color:#c8f6ff; }
+    .bottom button:focus-visible { outline:2px solid #22d3ee; outline-offset:3px; }
+    .bottom .actions { display:flex; gap:8px; }
+    @media(max-width:640px) {
+      .wrap { padding:12px 8px; }
+      .top { gap:8px; }
+      .cap { font-size:9px; }
+      #stageHolder { height:70dvh; min-height:460px; }
+      .bottom { flex-wrap:wrap; justify-content:center; text-align:center; }
+    }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } }
+  </style>
+<link rel="stylesheet" href="embedded.css?v=54"></head>
+<body>
+  <svg class="fx" aria-hidden="true"><defs>
+    <filter id="glow" filterUnits="userSpaceOnUse" x="-2000" y="-2000" width="6000" height="6000"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="soft" filterUnits="userSpaceOnUse" x="-2000" y="-2000" width="6000" height="6000"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="bloom" filterUnits="userSpaceOnUse" x="-2000" y="-2000" width="6000" height="6000"><feGaussianBlur stdDeviation="9"/></filter>
+  </defs></svg>
+  <div class="wrap">
+    <header class="top">
+      <span class="hi"><span class="dot"></span>R-04 / SERVER RACK</span>
+      <div class="swatches" id="swatches" role="radiogroup" aria-label="灯光颜色"></div>
+      <div class="arrows"><button id="prev" aria-label="上一个物件">←</button><button id="next" aria-label="下一个物件">→</button></div>
+    </header>
+    <main class="layout">
+      <nav id="nav" aria-label="物件列表"></nav>
+      <figure>
+        <div class="cap"><span class="hi" id="fignum">Fig 4</span><span id="figname">Server rack</span></div>
+        <div id="stageHolder"></div>
+        <div class="bottom">
+          <span id="hint">点击机架按钮或按数字键 1–7</span>
+          <span class="actions"><button id="turn-on" type="button">全部开启</button><button id="turn-off" type="button">全部关闭</button></span>
+          <span class="hi" id="readout" role="status" aria-live="polite">6/7 up</span>
+        </div>
+      </figure>
+    </main>
+  </div>
+  <script>
+    // This is a focused, locally customized presentation of the saved Iso Figures source.
+    // Original work: April Zhu, https://iso-figures.vercel.app/ . See
+    // iso-figures-original-source/THIRD_PARTY_NOTICES.md for source details.
+    if (location.hash !== '#rack') location.hash = 'rack';
+    try { localStorage.setItem('iso-accent', 'cyan'); } catch (_) {}
+  </script>
+  <script src="iso-figures-original-source/app.js"></script>
+  <script>
+    const rackStage = document.getElementById('stage');
+    function setUnit(n, on) {
+      const unit = rackStage.querySelector(`.rack-unit[data-n="${n}"]`);
+      const button = rackStage.querySelector(`.rack-btn[data-n="${n}"]`);
+      if (unit && button && button.classList.contains('latched') !== on)
+        unit.dispatchEvent(new MouseEvent('click', { bubbles:true }));
+    }
+    for (let n = 1; n <= 6; n++) setUnit(n, true);
+    document.getElementById('turn-on').addEventListener('click', () => {
+      for (let n = 1; n <= 7; n++) setUnit(n, true);
+    });
+    document.getElementById('turn-off').addEventListener('click', () => {
+      for (let n = 1; n <= 7; n++) setUnit(n, false);
+    });
+  </script>
+</body>
+</html>
+
+

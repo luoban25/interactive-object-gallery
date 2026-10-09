@@ -1,0 +1,76 @@
+body{background:#fafafa}
+#rack [role=button]{cursor:pointer;outline:none}
+#rack [role=button]:hover .control-face,#rack [role=button]:focus-visible .control-face{stroke:var(--accent);stroke-width:2}
+#rack .port.active .socket{fill:var(--accent)}
+#rack .patch-wire{fill:none;stroke:#f95800;stroke-width:3.4;stroke-linecap:round}
+#rack .wire-core{fill:none;stroke:#ffc38c;stroke-width:1.4;pointer-events:none}
+#rack .wire-signal{fill:none;stroke:#fff5db;stroke-width:1.5;stroke-dasharray:4 24;opacity:0;pointer-events:none}
+#rack .patch.active .wire-signal{opacity:1;animation:rack-flow 650ms linear infinite}
+#rack .drive{transition:transform 220ms ease}
+#rack .drive.ejected{transform:translate(-15px,13px)}
+#rack .drive.ejected .drive-led{fill:#aaa}
+#rack .drive.selected .control-face{stroke:var(--accent);stroke-width:1.5}
+#rack .drive-led,#rack .status-led{fill:var(--accent)}
+#rack.power-off .drive-led,#rack.power-off .status-led{fill:#bcbcbc}
+#rack.power-off .patch-wire{stroke:#c5c5c5}
+#rack.power-off .wire-core{stroke:#e5e5e5}
+#rack.power-off .wire-signal{animation:none;opacity:0}
+#rack.boosted .status-led{animation:rack-led 600ms ease-in-out infinite alternate}
+#rack.paused .wire-signal,#rack.paused .status-led{animation-play-state:paused}
+#rack .power-cap{transform:translateY(1.4px);transition:transform 120ms ease}
+#rack.power-off .power-cap{transform:translateY(0)}
+#rack #rack-power.is-down .power-cap{transform:translateY(3.5px)}
+#rack.power-off .power-face{fill:#c1c6c6;stroke:#949c9c}
+#rack.power-off .power-edge{fill:#7d8585}
+#rack .port-led{fill:#899090;opacity:.35;pointer-events:none}
+#rack:not(.power-off):not(.booting) .port.active .port-led{animation:light-train 1.6s linear var(--phase,0s) infinite;filter:drop-shadow(0 0 2px #ff9a4a)}
+#rack:not(.power-off):not(.booting) .drive:not(.ejected) .drive-led{animation:light-train 1.6s linear var(--phase,0s) infinite;filter:drop-shadow(0 0 2px #ff9a4a)}
+#rack:not(.power-off):not(.booting) .status-led{animation:status-pulse 2.4s ease-in-out var(--phase,0s) infinite}
+#rack:not(.power-off):not(.booting).boosted .status-led{animation-duration:.8s}
+#rack.booting .status-led,#rack.booting .drive:not(.ejected) .drive-led,#rack.booting .port.active .port-led{animation:boot-light 350ms ease var(--boot,1.6s) both}
+#rack.power-off .port.active .socket{fill:#858d8d}
+#rack.power-off .port-led{fill:#9ca3a3;opacity:.3}
+#rack.paused .port-led,#rack.paused .drive-led{animation-play-state:paused!important}
+#rack .patch.active .wire-signal{stroke-width:2;stroke-dasharray:4 15;animation-duration:500ms}
+@keyframes light-train{0%,11%{fill:#fff3ba;opacity:1}19%,100%{fill:#f95800;opacity:.45}}
+@keyframes status-pulse{0%,100%{opacity:.4}45%,60%{opacity:1}}
+@keyframes boot-light{from{opacity:0;fill:#858d8d}to{opacity:1;fill:#ff9140}}
+#rack .physical-cap{transform:translate(0,0);transition:transform 110ms ease}
+#rack .physical-button[aria-pressed=true] .physical-cap{transform:translate(.85px,-.5px)}
+#rack .physical-button.is-down .physical-cap{transform:translate(3.4px,-2px)}
+#rack .physical-button[aria-pressed=false] .cap-color,#rack.power-off .cap-color{fill:#aeb8b8}
+#rack .physical-drive.ejected{transform:translate(-17.2px,9.8px)}
+#rack .unit-off .unit-face{fill:#d5dada}
+#rack .unit-off .drive-led,#rack .unit-off .status-led,#rack .unit-off .port-led{animation:none!important;fill:#a1aaaa!important;opacity:.4;filter:none!important}
+#rack .unit-off .socket{fill:#858f8f!important}
+#rack .unit-off .patch-wire{stroke:#b8c1c1}
+#rack .unit-off .wire-core{stroke:#e1e5e5}
+#rack .patch.active .wire-signal{animation-duration:var(--traffic-speed,500ms)}
+#rack.power-off .cap-solid .control-face{fill:#b3bbbb}
+#rack .physical-button:hover .cap-color{stroke:#e77d2e;stroke-width:1.2}
+#rack .managed-cable .patch-wire{stroke-width:2.2}
+#rack .managed-cable .wire-core{stroke-width:.8}
+#rack .managed-cable .wire-signal{stroke-width:1.1;stroke-dasharray:4 19}
+#rack .managed-cable.inactive .patch-wire{stroke:#b4c0c0}
+#rack .managed-cable.inactive .wire-core{stroke:#e1e7e7}
+#rack .managed-cable.inactive .cable-plug{fill:#b7c1c1;stroke:#9ba7a7}
+#rack-interior-content .solid>path:nth-child(1){fill:#222b31;stroke:#596771}
+#rack-interior-content .solid>path:nth-child(2){fill:url(#module-front);stroke:#64727c}
+#rack-interior-content .solid>path:nth-child(3){fill:url(#module-top);stroke:#75828b}
+#rack-interior-content rect:not([stroke=none]){stroke:#626e77}
+#rack-interior-content rect[fill="#f6f6f6"],#rack-interior-content rect[fill="#e5e8e8"],#rack-interior-content rect[fill="#dedede"],#rack-interior-content rect[fill="#e7eaea"]{fill:#414d57}
+#rack-interior-content rect[fill="#969e9e"],#rack-interior-content rect[fill="#919999"],#rack-interior-content rect[fill="#697575"]{fill:#1b242b}
+#rack-interior-content rect[fill="#b6bdbd"],#rack-interior-content rect[fill="#b6bcbc"]{fill:#45525d}
+#rack-interior-content rect[fill="#d5dada"]{fill:#202a31;stroke:#65717b}
+#rack-interior-content rect[fill="#747f7f"]{fill:#101b22}
+#rack-interior-content .socket{fill:#101a21;stroke:#6a7780}
+#rack-interior-content .port.active .socket{fill:var(--accent)}
+#rack-interior-content .vent-hole{fill:#11191f;stroke:#55636e;stroke-width:.3}
+#rack-interior-content text{fill:#a0adb7}
+#rack-interior-content line{stroke:#81909c}
+#rack-interior-content .cable-plug{stroke:#d17c35}
+#rack-interior-content .physical-button[aria-pressed=false] .cap-color{fill:#596772}
+#front-glass-pane,#front-glass-pane *{pointer-events:none}
+@keyframes rack-flow{to{stroke-dashoffset:-56}}
+@keyframes rack-led{to{opacity:.25}}
+@media(prefers-reduced-motion:reduce){#rack .wire-signal,#rack .status-led,#rack .port-led,#rack .drive-led{animation:none!important}#rack .power-cap,#rack .physical-cap{transition:none}#rack .port.active .port-led{fill:var(--accent);opacity:1}}

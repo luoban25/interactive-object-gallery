@@ -1,0 +1,10 @@
+body{margin:0!important;overflow:hidden;background:#fafafa!important}
+main,.layout,#computer-view{margin:0!important;padding:0!important;width:100%!important;max-width:none!important;height:100dvh!important;display:block!important}
+.sidebar,aside,.object-switch,.topbar,.footer,.canvas-head,.canvas-foot,.entry,.edition,.theme,.theme-toggle,.object-frame{display:none!important}
+.canvas,.canvas-card,.stage-wrap{position:absolute!important;inset:0!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;min-height:0!important;max-height:none!important;background:#fafafa!important;overflow:hidden!important}
+#stage{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important}
+.paused *{animation-play-state:paused!important}
+.gallery-demo{position:fixed;z-index:5;bottom:12px;left:50%;transform:translateX(-50%);border:1px solid #e6e4df;border-radius:22px;background:#fffefbe8;color:#f95800;padding:9px 17px;font:12px system-ui;cursor:pointer;box-shadow:0 2px 10px #00000006}
+.gallery-demo:hover{background:#fff2e7}
+.gallery-demo:active{transform:translateX(-50%) scale(.96)}
+.gallery-demo:focus-visible{outline:2px solid #f95800;outline-offset:3px}

@@ -1,0 +1,5 @@
+#supply-panel{position:absolute;inset:0;display:grid;place-items:center}
+#supply-stage{position:absolute;inset:0;touch-action:none}
+#supply-stage canvas{display:block;width:100%;height:100%;outline:none}
+#supply-stage canvas:focus-visible{outline:2px solid #f95800;outline-offset:-4px}
+@media(max-width:600px){.product-switch button{padding:0 8px;font-size:11px}}

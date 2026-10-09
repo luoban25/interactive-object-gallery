@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>交互机械物件</title><link rel="icon" href="data:,"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="rack.css?v=6"><link rel="stylesheet" href="robot.css?v=8"><link rel="stylesheet" href="charger.css?v=11"><link rel="stylesheet" href="clock.css?v=20"><link rel="stylesheet" href="controller.css?v=21"><link rel="stylesheet" href="power-supply.css?v=24"><link rel="stylesheet" href="television.css?v=33"><script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script><link rel="stylesheet" href="embedded.css?v=53"></head>
+<body data-product="tv"><nav class="product-switch" aria-label="切换物件"><button type="button" data-show="rack" aria-pressed="false">机架</button><button type="button" data-show="robot" aria-pressed="false">机械臂</button><button type="button" data-show="charger" aria-pressed="false">充电桩</button><button type="button" data-show="clock" aria-pressed="false">闹钟</button><button type="button" data-show="controller" aria-pressed="false">控制盒</button><button type="button" data-show="supply" aria-pressed="false">电源</button><button type="button" data-show="tv" aria-pressed="true">电视</button></nav>
+<main><section id="rack-panel" hidden aria-label="服务器机架"><svg id="rack" viewBox="0 0 1440 1080" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="可操作的服务器机架，电源、网络端口、八块硬盘与散热单元"></svg><span id="rack-status" class="sr-only" role="status" aria-live="polite"></span></section>
+<section id="robot-panel" hidden aria-label="交互机械臂"><div id="robot-stage"></div><div class="robot-controls" role="group" aria-label="机械臂操作"><button id="robot-power" aria-label="机械臂电源，快捷键 P" title="电源 · P" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v8M7 6a8 8 0 1 0 10 0"/></svg></button><button id="robot-grip" aria-label="夹爪开合，快捷键空格" title="夹爪 · 空格" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v8l-3 5v3h4v-3l3-5V4m6 0v8l3 5v3h-4v-3l-3-5V4"/></svg></button><button id="robot-cycle" aria-label="自动抓取和放置" title="抓取演示"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 9 6-9 6Z"/></svg></button><button id="robot-reset" aria-label="复位，快捷键 R" title="复位 · R"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9a8 8 0 1 1-1 7M5 3v6h6"/></svg></button></div><span id="robot-status" class="sr-only" role="status" aria-live="polite"></span></section><section id="charger-panel" hidden aria-label="交互充电桩"><div id="charger-stage"></div><div class="robot-controls" role="group" aria-label="充电桩操作"><button id="charger-power" aria-label="充电桩电源，快捷键 P" title="电源 · P" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v8M7 6a8 8 0 1 0 10 0"/></svg></button><button id="charger-gun" aria-label="取枪或归位，快捷键空格" title="取枪 / 归位 · 空格" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h6l4 5v8h-5V9H7ZM12 16v4H6V8h1"/></svg></button><button id="charger-charge" aria-label="充电灯光演示，快捷键 C" title="充电演示 · C" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h6l-1 8 9-13h-6Z"/></svg></button><button id="charger-reset" aria-label="复位，快捷键 R" title="复位 · R"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9a8 8 0 1 1-1 7M5 3v6h6"/></svg></button></div><span id="charger-status" class="sr-only" role="status" aria-live="polite"></span></section><section id="clock-panel" hidden aria-label="交互数字闹钟"><div id="clock-stage"></div><div class="clock-features"><div class="clock-modes" role="group" aria-label="屏幕界面"><button data-clock-mode="time" aria-pressed="true">时间</button><button data-clock-mode="date" aria-pressed="false">日历</button><button data-clock-mode="timer" aria-pressed="false">倒计时</button><button data-clock-mode="stopwatch" aria-pressed="false">秒表</button><button data-clock-mode="focus" aria-pressed="false">专注</button></div><div class="clock-options"><select id="clock-duration" aria-label="倒计时时长"><option value="1">1 分钟</option><option value="5">5 分钟</option><option value="15">15 分钟</option><option value="25" selected>25 分钟</option><option value="45">45 分钟</option><option value="60">60 分钟</option></select><button id="clock-run">开始</button><button id="clock-reset">复位</button><button id="clock-format">12 小时</button><button id="clock-brightness" aria-pressed="false">亮度</button></div></div><div class="robot-controls" role="group" aria-label="闹钟操作">
+<button id="clock-snooze" aria-label="关闭或唤醒整个屏幕，快捷键 S" title="关闭 / 唤醒屏幕 · S"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h10L6 18h10"/></svg></button>
+<button id="clock-alarm" aria-label="设置闹钟，快捷键 A" title="设置闹钟 · A"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V9a6 6 0 0 1 12 0v7l2 2H4Zm4 5h4"/></svg></button>
+<button id="clock-time" aria-label="设置时间，快捷键 T" title="校时 · T"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg></button>
+<button id="clock-demo" aria-label="六秒闹钟演示，快捷键 D" title="闹钟演示 · D"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 9 6-9 6Z"/></svg></button></div><span id="clock-status" class="sr-only" role="status" aria-live="polite"></span></section>
+<section id="controller-panel" hidden aria-label="工业控制盒"><div id="controller-stage"></div><div class="robot-controls" role="group" aria-label="控制盒操作"><button id="controller-power" aria-label="泵运行或停止，快捷键空格或 P" title="泵开关 · 空格 / P" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v8M7 6a8 8 0 1 0 10 0"/></svg></button><button id="controller-menu" aria-label="切换总览、趋势和设置，快捷键 M" title="切换界面 · M"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14M5 12h14M5 18h14"/></svg></button><button id="controller-reset" aria-label="复位，快捷键 R" title="复位 · R"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9a8 8 0 1 1-1 7M5 3v6h6"/></svg></button></div><span id="controller-status" class="sr-only" role="status" aria-live="polite"></span></section>
+<section id="supply-panel" hidden aria-label="交流电源"><div id="supply-stage"></div><div class="robot-controls" role="group" aria-label="交流电源操作"><button id="supply-power" aria-label="电源开关，快捷键 P" title="电源 · P" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v8M7 6a8 8 0 1 0 10 0"/></svg></button><button id="supply-mode" aria-label="切换模式，快捷键 M" title="模式 · M"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14M5 12h14M5 18h14"/></svg></button><button id="supply-set" aria-label="参数设置，快捷键 S" title="设置 · S"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16M8 4v6M16 14v6"/></svg></button><button id="supply-reset" aria-label="复位，快捷键 R" title="复位 · R"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9a8 8 0 1 1-1 7M5 3v6h6"/></svg></button></div><span id="supply-status" class="sr-only" role="status" aria-live="polite"></span></section><section id="tv-panel" aria-label="便携电视等距插画"><div id="tv-stage"></div><div class="robot-controls" role="group" aria-label="电视操作"><button id="tv-toggle" title="电源 · P" aria-label="电视电源" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v8M7 6a8 8 0 1 0 10 0"/></svg></button><button id="tv-next" title="切换频道" aria-label="切换频道"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 9 6-9 6Z"/></svg></button><button id="tv-aerial" title="伸缩天线 · A" aria-label="伸缩天线"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 20 17 3M5 20h9M15 3l4 2"/></svg></button><button id="tv-reset" title="复位 · R" aria-label="复位"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9a8 8 0 1 1-1 7M5 3v6h6"/></svg></button></div><span id="tv-status" class="sr-only" role="status" aria-live="polite"></span></section></main><dialog id="clock-dialog" class="clock-dialog" aria-labelledby="clock-dialog-title"><form id="clock-form"><h2 id="clock-dialog-title">设置时间</h2><label class="sr-only" for="clock-input">时间</label><input id="clock-input" type="time" required><label id="clock-enabled-row"><input id="clock-enabled" type="checkbox">启用闹钟</label><label id="clock-sound-row"><input id="clock-sound" type="checkbox">提示音</label><footer><button id="clock-cancel" type="button">取消</button><button type="submit">保存</button></footer></form></dialog>
+<script type="module" src="object-loader.js?v=53"></script></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

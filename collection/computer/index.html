@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101113">
+<meta name="description" content="可交互的 SVG 等距复古电脑：打字、开关机、线缆信号与可调发光颜色。">
+<title>交互物件 · 设备收藏</title>
+<style>
+:root{color-scheme:dark;--bg:#101113;--panel:#17181a;--line:#626467;--detail:#34373a;--body:#202224;--top:#2a2d30;--side:#191b1d;--ink:#a3a6aa;--bright:#eeefed;--accent:#f95800;--hi:#f95800;--wash:#f9580012}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"SFMono-Regular",Consolas,"Microsoft YaHei",monospace;-webkit-font-smoothing:antialiased;font-size:13px;font-variant-numeric:tabular-nums}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:5px}button:active{transform:scale(.96)}button{transition:transform 140ms ease-out,color 140ms ease-out,background 140ms ease-out}main{max-width:1280px;margin:auto;padding:34px 36px 26px}.topbar{display:flex;align-items:center;justify-content:space-between;padding-bottom:26px;border-bottom:1px solid #2b2d30}.brand{color:var(--bright);display:flex;align-items:center;gap:12px}.brand i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}.edition{font-size:11px;color:#81858a}.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:36px;padding-top:30px}.sidebar{display:flex;flex-direction:column}.eyebrow{font-size:11px;color:#85898f;margin:0 0 18px}.object-nav{background:#1b1d20;border:1px solid #34363a;border-radius:12px;min-height:52px;padding:15px 16px;text-align:left;color:var(--bright);display:flex;gap:17px;align-items:center}.object-nav span:first-child{color:var(--accent)}h1{font-size:28px;line-height:1.4;font-weight:500;color:var(--bright);text-wrap:balance;margin:38px 0 14px}.description{font-family:"Microsoft YaHei",sans-serif;font-size:13px;line-height:1.9;max-width:225px;text-wrap:pretty}.rule{width:28px;height:1px;background:var(--accent);margin-top:26px}.controls{margin-top:26px}.controls label,.controls-title{display:block;font-size:11px;color:#a0a3a8;margin-bottom:12px}.palette{display:flex;gap:6px;flex-wrap:wrap}.swatch{width:40px;height:40px;background:none;border:1px solid transparent;border-radius:50%;display:grid;place-items:center;padding:0}.swatch i{width:14px;height:14px;background:var(--sw);border-radius:50%}.swatch[aria-pressed=true]{border-color:#74777c}.swatch[aria-pressed=true] i{box-shadow:0 0 14px var(--sw)}.actions{display:grid;gap:10px;margin-top:24px}.action{min-height:42px;border:1px solid #34363a;border-radius:8px;background:#1b1d20;color:#c3c6c9;text-align:left;padding:10px 13px;display:flex;justify-content:space-between;align-items:center}.action:hover{background:#24272a;color:var(--bright)}.action.primary{color:var(--accent)}.shortcut{font-size:10px;color:#8e9399}.sidebar-foot{margin-top:auto;padding-top:32px;font-size:10px;line-height:1.9;color:#81858a}.canvas-card{min-width:0;background:var(--panel);border-radius:18px;border:1px solid #2c2f32;overflow:hidden}.canvas-head{display:flex;justify-content:space-between;gap:16px;padding:23px 26px 0;font-size:11px}.canvas-head strong{color:#d8dadd;font-weight:400}.status{display:flex;align-items:center;gap:8px}.status i{width:5px;height:5px;border-radius:50%;background:var(--accent)}.status.off i{background:#626467}.stage-wrap{background:radial-gradient(ellipse 45% 45% at 52% 51%,var(--wash),transparent 75%);transition:opacity 180ms ease-out}.stage-wrap.off{background:none}#stage{width:100%;height:auto;display:block;aspect-ratio:850/630;user-select:none;touch-action:manipulation}.canvas-foot{border-top:1px solid #292c2f;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 24px;font-size:11px}.canvas-foot span:last-child{color:#c0c3c6}.entry{padding:17px 24px 21px;display:flex;gap:12px;align-items:center;border-top:1px solid #292c2f}.entry label{white-space:nowrap;color:#8f959b;font-size:11px}.entry input{width:100%;min-width:0;color:var(--bright);background:#101214;border:1px solid #34383c;border-radius:7px;padding:10px 12px;height:40px}.entry input:disabled{opacity:.45}.footer{display:flex;justify-content:space-between;gap:18px;margin-top:25px;font-size:10px;color:#85898f}.footer a{color:#a0a5ac;text-decoration:none}.footer a:hover{color:var(--accent)}.face{fill:var(--body);stroke:var(--line);stroke-width:1;stroke-linejoin:round;vector-effect:non-scaling-stroke}.face.top{fill:var(--top)}.face.side{fill:var(--side)}.detail{fill:none;stroke:var(--detail);stroke-width:1;vector-effect:non-scaling-stroke}.recess{fill:#111315;stroke:#53565a;stroke-width:1;vector-effect:non-scaling-stroke}.fine-label{fill:#8d9298;font-family:Consolas,monospace}.key{cursor:pointer}.key .movable{transition:transform 100ms ease-out}.key.down .movable{transform:translateY(3px)}.key .face{transition:fill 180ms ease-out,stroke 180ms ease-out}.key:hover .face.top,.key:focus-visible .face.top{stroke:var(--hi)}.key:focus-visible{outline:none}.key.down .face{fill:var(--accent);stroke:var(--hi)}.key.down .face.top{fill:var(--hi)}.key.down .fine-label{fill:#2b160a}.power-object{cursor:pointer}.power-object:focus-visible{outline:none}.power-object:focus-visible .face{stroke:var(--accent)}.glass{fill:#131718;stroke:#595f61;stroke-width:1;transition:fill 180ms ease-out}.on .glass{fill:#1a201d;stroke:var(--accent)}.crt,.halo{opacity:0;transition:opacity 180ms ease-out}.on .crt{opacity:1}.on .halo{opacity:.2}.screen-ink{fill:var(--hi);font-family:Consolas,"Microsoft YaHei",monospace}.screen-line{stroke:var(--accent);stroke-width:.4;opacity:.06}.led{fill:#373e3b}.on .led{fill:var(--accent)}.wire{fill:none;stroke:#76797b;stroke-width:1.1;vector-effect:non-scaling-stroke;stroke-linecap:round}.wire-under{fill:none;stroke:#101214;stroke-width:4}.on .wire{stroke:var(--accent);opacity:.75}.pulse{fill:none;stroke:var(--hi);stroke-width:2.2;stroke-dasharray:60 1000;stroke-dashoffset:60;opacity:0;stroke-linecap:round}.pulse.go{animation:flow 650ms linear}.cursor{animation:blink 1.1s steps(1) infinite}@keyframes flow{0%{stroke-dashoffset:60;opacity:1}90%{opacity:1}100%{stroke-dashoffset:-1000;opacity:0}}@keyframes blink{50%{opacity:0}}.floor-grid{stroke:#303438;stroke-width:.6;fill:none;opacity:.35}.powered-label{fill:var(--accent)}
+@media(max-width:900px){main{padding:24px 20px}.layout{grid-template-columns:180px minmax(0,1fr);gap:20px}h1{font-size:24px}.canvas-head{padding:18px 18px 0}.canvas-foot,.entry{padding-inline:18px}.canvas-foot{font-size:10px}}
+@media(max-width:640px){main{padding:20px 14px}.edition{font-size:9px}.layout{grid-template-columns:1fr;padding-top:18px;gap:18px}.sidebar{display:grid;grid-template-columns:1fr auto;gap:12px 18px}.eyebrow,.object-nav,.description,.rule,.sidebar-foot{display:none}h1{margin:0;font-size:22px}.controls{margin:0;grid-column:2;grid-row:1/3}.controls-title{margin-bottom:4px}.palette{gap:0}.swatch{width:36px;height:40px}.actions{margin:0;grid-column:1/-1;display:flex;gap:6px}.action{padding:9px 10px;font-size:11px;white-space:nowrap}.shortcut{display:none}.canvas-head{font-size:10px}.canvas-foot{padding:14px;font-size:10px}.entry{padding:14px;gap:9px}.footer{font-size:9px}.stage-wrap{overflow:hidden}}
+h1{margin-top:12px}.layout{padding-top:0}.entry{padding:18px 24px}.actions{margin-top:20px}@media(max-width:640px){.controls{grid-row:1}.sidebar{align-items:center}h1{margin:0}.actions{margin-top:0}}
+
+/* Compact left-aligned layout and theme tokens. */
+main{max-width:1540px;margin:0;padding:32px}.layout{grid-template-columns:220px minmax(0,1fr);gap:28px}.canvas-card{position:relative}
+.key:focus,.power-object:focus{outline:none}.key:focus-visible .face.top{stroke:var(--accent);stroke-width:2}
+.theme-toggle{position:absolute;top:18px;right:18px;z-index:1;width:42px;height:42px;display:grid;place-items:center;border:1px solid #3e4247;border-radius:50%;background:#202326;color:#e6e8eb}.theme-toggle:hover{background:#2e3236}.theme-toggle svg{width:20px;height:20px}
+:root[data-theme="light"]{color-scheme:light;--bg:#f2f3f4;--panel:#fff;--line:#737b83;--detail:#bfc6cc;--body:#e6e9ec;--top:#f3f5f7;--side:#d6dce1;--ink:#545c64;--bright:#171b20}
+[data-theme="light"] .canvas-card{border-color:#d5dbe0}[data-theme="light"] .action{background:#fff;border-color:#cfd5db;color:#414951}[data-theme="light"] .action:hover{background:#e8edf1}[data-theme="light"] .action.primary{color:var(--accent)}
+[data-theme="light"] .entry{border-color:#d5dbe0}[data-theme="light"] .entry input{background:#f3f5f7;border-color:#cbd3da}[data-theme="light"] .theme-toggle{background:#f3f5f7;border-color:#cbd3da;color:#222a31}[data-theme="light"] .theme-toggle:hover{background:#e2e8ed}
+[data-theme="light"] .recess{fill:#cdd4da;stroke:#8a949e}[data-theme="light"] .fine-label{fill:#525d68}[data-theme="light"] .key.down .fine-label{fill:#172027}[data-theme="light"] .wire-under{stroke:#fff}[data-theme="light"] .floor-grid{stroke:#c0c8d0}[data-theme="light"] .glass{fill:#222a30}[data-theme="light"] .on .glass{fill:#172024}
+@media(max-width:900px){main{padding:24px 20px}.layout{grid-template-columns:180px minmax(0,1fr);gap:20px}}
+@media(max-width:640px){main{padding:20px 14px}.layout{grid-template-columns:1fr;gap:18px}.theme-toggle{top:12px;right:12px;width:40px;height:40px}}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+.object-switch{display:flex;gap:8px;margin-bottom:22px}.object-switch button{min-height:42px;padding:10px 18px;border:1px solid #3e454d;border-radius:9px;background:transparent;color:var(--bright);font-size:13px}.object-switch button[aria-pressed="true"]{background:var(--panel);border-color:var(--accent);color:var(--accent)}
+.layout[hidden],#case-view[hidden]{display:none!important}#case-view{display:block;width:100%;height:calc(100dvh - 124px);min-height:650px;border:0;border-radius:18px;background:transparent}
+@media(max-width:640px){.object-switch{margin-bottom:18px}.object-switch button{flex:1;padding:10px}.object-switch{width:100%}#case-view{min-height:620px;height:calc(100dvh - 112px)}}
+
+.object-frame[hidden]{display:none!important}.object-frame{display:block;width:100%;height:calc(100dvh - 124px);min-height:650px;border:0;border-radius:18px;background:transparent}.object-switch{overflow-x:auto;scrollbar-width:thin}.object-switch button{flex:none;white-space:nowrap}
+@media(max-width:640px){.object-switch button{flex:none;padding:10px 14px}.object-frame{min-height:660px;height:calc(100dvh - 112px)}}
+</style>
+<link rel="stylesheet" href="../collection.css"></head>
+<body>
+<main>
+<nav class="object-switch" aria-label="切换作品"><button id="show-computer" aria-pressed="false" aria-controls="computer-view">复古电脑</button><button id="show-case" aria-pressed="false" aria-controls="case-view">海景机箱</button><button id="show-rack" aria-pressed="true" aria-controls="rack-view">服务器机架</button></nav>
+
+<div class="layout" id="computer-view" hidden>
+<aside class="sidebar">
+
+
+<h1>一台会回应<br>你的老电脑。</h1>
+
+
+<div class="controls"><div class="palette" role="group" aria-label="发光颜色"></div></div>
+<div class="actions">
+<button class="action primary" id="demo">播放演示 </button>
+<button class="action" id="power" aria-pressed="true">关闭电源 </button>
+<button class="action" id="sound" aria-pressed="false">按键声音：关 </button>
+</div>
+
+</aside>
+<section class="canvas-card" aria-label="可交互的等距电脑">
+<button class="theme-toggle" id="theme" aria-label="切换为白色主题" aria-pressed="false" title="黑白切换"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 0 0 16Z" fill="currentColor"/></svg></button>
+
+<div class="stage-wrap"><svg id="stage" class="on" viewBox="0 0 850 630" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="等距复古电脑。点击键帽输入，点击机身开关电源。"></svg></div>
+
+<div class="entry"><input id="typing" type="text" autocomplete="off" spellcheck="false" maxlength="240" placeholder="输入文字…" aria-label="输入到电脑屏幕"></div>
+</section>
+</div>
+
+
+
+
+
+<div id="announcement" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></div>
+</main>
+<script src="app.js"></script>
+<script src="../collection.js"></script></body>
+</html>
+
+

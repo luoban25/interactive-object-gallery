@@ -1,0 +1,17 @@
+[hidden]{display:none!important}
+#rack-panel,#robot-panel{position:absolute;inset:0;display:grid;place-items:center}
+#robot-stage{position:absolute;inset:0;touch-action:none}
+#robot-stage canvas{display:block;width:100%;height:100%;outline:none}
+#robot-stage canvas:focus-visible{outline:2px solid #f95800;outline-offset:-4px}
+.product-switch{position:fixed;z-index:5;top:24px;left:50%;transform:translateX(-50%);display:flex;gap:4px;padding:4px;border-radius:30px;background:#ffffffd9;box-shadow:0 2px 12px #00000008,0 0 0 1px #00000008;backdrop-filter:blur(10px)}
+.product-switch button,.robot-controls button{border:0;background:transparent;color:#777;font-family:system-ui;cursor:pointer;transition:background 160ms ease,color 160ms ease,transform 120ms ease}
+.product-switch button{min-height:40px;padding:0 22px;border-radius:24px;font-size:13px}
+.product-switch button[aria-pressed=true]{background:#242b30;color:#fff}
+.product-switch button:active,.robot-controls button:active{transform:scale(.96)}
+button:focus-visible{outline:2px solid #f95800;outline-offset:4px}
+.robot-controls{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;gap:10px;padding:6px 10px;border-radius:32px;background:#ffffffd9;box-shadow:0 3px 18px #00000007,0 0 0 1px #00000007;backdrop-filter:blur(10px)}
+.robot-controls button{width:44px;height:44px;border-radius:50%;font-size:24px;display:grid;place-items:center}
+.robot-controls button:hover{background:#f3ede6;color:#f95800}
+.robot-controls button[aria-pressed=true]{color:#f95800;background:#fff0e3}
+.robot-controls svg{width:21px;height:21px;max-height:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:600px){.product-switch{top:16px}.robot-controls{bottom:20px}}
